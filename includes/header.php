@@ -15,6 +15,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Mobile Menu JS -->
+    <script src="assets/js/mobile-menu.js" defer></script>
 </head>
 <body>
 
@@ -37,9 +39,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <a href="logout.php" class="btn-primary">Logout</a>
         <?php else: ?>
             <a href="login.php" class="btn-outline">Login</a>
-            <a href="register.php" class="btn-primary">Sign Up</a>
+            <a href="register.php" class="btn-primary" id="signup-btn">Sign Up</a>
         <?php endif; ?>
     </div>
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
 </nav>
+<div class="mobile-overlay" id="mobile-overlay"></div>
 
 <main>
