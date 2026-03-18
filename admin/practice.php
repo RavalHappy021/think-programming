@@ -129,4 +129,4 @@ $practice = $pdo->query("SELECT p.*, c.name as cat_name FROM practice_modules p 
     </div>
 </div>
 
-<?php include 'includes/admin_footer.php'; ?>
+<?php include __DIR__ . '/includes/admin_footer.php'; ?>

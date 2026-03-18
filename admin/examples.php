@@ -116,4 +116,4 @@ $examples = $pdo->query("SELECT e.*, c.name as cat_name FROM examples e JOIN cat
     </div>
 </div>
 
-<?php include 'includes/admin_footer.php'; ?>
+<?php include __DIR__ . '/includes/admin_footer.php'; ?>

@@ -129,4 +129,4 @@ $tutorials = $pdo->query("SELECT t.*, c.name as cat_name FROM tutorials t JOIN c
     </div>
 </div>
 
-<?php include 'includes/admin_footer.php'; ?>
+<?php include __DIR__ . '/includes/admin_footer.php'; ?>
