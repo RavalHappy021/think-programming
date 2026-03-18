@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/db.php';
 
-echo "<h2>Admin Setup Utility</h2>";
+echo "<h2>Admin Setup Utility (v1.1)</h2>";
 
 try {
     // 1. Add role column if it doesn't exist
