@@ -4,8 +4,12 @@ require_once 'includes/db.php';
 echo "<h2>Starting Database Setup...</h2>";
 
 try {
-    // Read the SQL file
-    $sql = file_get_contents('database.sql');
+    // Read the SQL file using absolute path relative to this script
+    $sqlFile = __DIR__ . '/database.sql';
+    if (!file_exists($sqlFile)) {
+        throw new Exception("Database SQL file not found at: " . $sqlFile);
+    }
+    $sql = file_get_contents($sqlFile);
     
     // Remove CREATE DATABASE and USE statements to avoid permission issues on cloud hosts like Aiven
     // We assume the connection is already made to the correct database (e.g. defaultdb)
