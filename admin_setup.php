@@ -13,15 +13,29 @@ try {
         echo "<p>Column 'role' already exists.</p>";
     }
 
-    // 2. Promote current user to admin if logged in, or ask for username
+    // 2. Promote user to admin
     if (isset($_GET['promote'])) {
-        $userToPromote = $_GET['promote'];
-        $stmt = $pdo->prepare("UPDATE users SET role = 'admin' WHERE username = ?");
+        $userToPromote = trim($_GET['promote']);
+        
+        // Try exact match first, then case-insensitive
+        $stmt = $pdo->prepare("SELECT username FROM users WHERE LOWER(username) = LOWER(?)");
         $stmt->execute([$userToPromote]);
-        if ($stmt->rowCount() > 0) {
-            echo "<p style='color: green;'>User '<strong>$userToPromote</strong>' has been promoted to Admin!</p>";
+        $foundUser = $stmt->fetchColumn();
+
+        if ($foundUser) {
+            $stmt = $pdo->prepare("UPDATE users SET role = 'admin' WHERE username = ?");
+            $stmt->execute([$foundUser]);
+            echo "<p style='color: green;'>User '<strong>$foundUser</strong>' has been promoted to Admin!</p>";
         } else {
             echo "<p style='color: red;'>User '<strong>$userToPromote</strong>' not found.</p>";
+            
+            // List all users to help the user find the right one
+            $allUsers = $pdo->query("SELECT username FROM users")->fetchAll(PDO::FETCH_COLUMN);
+            if ($allUsers) {
+                echo "<p><strong>Available usernames:</strong> " . implode(", ", $allUsers) . "</p>";
+            } else {
+                echo "<p>No users found in the database. Please register first.</p>";
+            }
         }
     } else {
         echo "<p>To promote a user, visit: <code>admin_setup.php?promote=YOUR_USERNAME</code></p>";
