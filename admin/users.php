@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/db.php';
-include 'includes/admin_header.php';
+require_once __DIR__ . '/../includes/db.php';
+include __DIR__ . '/includes/admin_header.php';
 
 // Handle User Deletion
 if (isset($_GET['delete'])) {
@@ -67,4 +67,4 @@ $users = $pdo->query("SELECT * FROM users ORDER BY created_at DESC")->fetchAll(P
     </div>
 </div>
 
-<?php include 'includes/admin_footer.php'; ?>
+<?php include __DIR__ . '/includes/admin_footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/db.php';
-include 'includes/admin_header.php';
+require_once __DIR__ . '/../includes/db.php';
+include __DIR__ . '/includes/admin_header.php';
 
 // Fetch Statistics
 $userCount = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
@@ -62,4 +62,4 @@ $exampleCount = $pdo->query("SELECT COUNT(*) FROM examples")->fetchColumn();
     </div>
 </div>
 
-<?php include 'includes/admin_footer.php'; ?>
+<?php include __DIR__ . '/includes/admin_footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/db.php';
-include 'includes/admin_header.php';
+require_once __DIR__ . '/../includes/db.php';
+include __DIR__ . '/includes/admin_header.php';
 
 $msg = ''; $type = '';
 
