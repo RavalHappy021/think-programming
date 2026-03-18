@@ -19,6 +19,23 @@ if (!preg_match('/\.(php|js|css|png|jpg|jpeg|gif|svg|ico)$/i', $file)) {
 $fullPath = __DIR__ . '/../' . ltrim($file, '/');
 
 if (file_exists($fullPath) && is_file($fullPath)) {
+    // Handle static assets with correct Content-Type
+    $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
+    $mimes = [
+        'css'  => 'text/css',
+        'js'   => 'application/javascript',
+        'png'  => 'image/png',
+        'jpg'  => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'gif'  => 'image/gif',
+        'svg'  => 'image/svg+xml',
+        'ico'  => 'image/x-icon'
+    ];
+    
+    if (isset($mimes[$ext])) {
+        header("Content-Type: " . $mimes[$ext]);
+    }
+
     // Set the script filename for PHP includes to work correctly
     $_SERVER['SCRIPT_FILENAME'] = realpath($fullPath);
     include $fullPath;
