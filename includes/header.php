@@ -35,6 +35,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </ul>
     <div class="nav-actions">
         <?php if(isset($_SESSION['user_id'])): ?>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <a href="admin/index.php" class="btn-outline" style="border-color: var(--secondary); color: var(--secondary);">Admin Panel</a>
+            <?php endif; ?>
             <a href="dashboard.php" class="btn-outline">Dashboard</a>
             <a href="logout.php" class="btn-primary">Logout</a>
         <?php else: ?>
